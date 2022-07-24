@@ -8,13 +8,16 @@
     <script src="https://unpkg.com/vue@3"></script>
   </head>
   <body>
-    <div id="app">{{ message }}</div>
+    <div id="app">
+      <h1 v-if="flag">条件为 true 时渲染的元素 🎉</h1>
+      <h1 v-else>条件为 false 时渲染的元素 🥲</h1v>
+    </div>
     <script>
       const { createApp } = Vue;
       createApp({
         data() {
           return {
-            message: 'Hello Vue!???',
+            flag: true,
           };
         },
       }).mount('#app');
