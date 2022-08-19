@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>Selected:{{selected}}</p>
+      <select v-model="selected">
+        <option disabled value="">Please select one</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+      <!-- select 在执行的选项(options)中选择一项作为该选择框的值 -->
+      <p>Multiple Selected:{{mulSelected}}</p>
+      <select v-model="mulSelected" multiple>
+        <!-- 多选选项框只需要添加 multiple 特性即可 -> 通过拖动鼠标来选择多个选项值,这些选项值会组成一个数组格式的数据返回 -->
+        <option disabled value="">Please select one</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      const App = createApp({
+        data() {
+          return {
+            selected: '',
+            mulselected: [],
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

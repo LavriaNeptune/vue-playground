@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>Selected:{{selected}}</p>
+      <select v-model="selected">
+        <option disabled value="">Please select one</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+      <!-- select 在执行的选项(options)中选择一项作为该选择框的值 -->
+            <p>MSelected:{{selected}}</p>
+      <select v-model="selected">
+        <option disabled value="">Please select one</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      const App = createApp({
+        data() {
+          return {
+            selected: '',
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>Single Checkbox's boolean value:{{flag}}</p>
+
+      <input type="checkbox" v-model="flag" id="my-checkbox" true-value/>
+      <label for="my-checkbox">测试用复选框</label>
+
+      <p>Multiple Checkboxes' selected value(array):{{arrName}}</p>
+      <input type="checkbox" v-model="arrName" id="lavria" value="Lavria" />
+      <label for="lavria">Lavria</label>
+      <input type="checkbox" v-model="arrName" id="nepgear" value="Nepgear" />
+      <label for="nepgear">Nepgear</label>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      const App = createApp({
+        data() {
+          return {
+            flag: false,
+            arrName: [],
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

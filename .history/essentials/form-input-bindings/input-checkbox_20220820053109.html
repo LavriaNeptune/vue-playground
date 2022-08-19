@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>Single Checkbox's boolean value:{{flag}}</p>
+
+      <!-- <input type="checkbox" v-model="flag" id="my-checkbox" /> -->
+      <input
+        type="checkbox"
+        v-model="flag"
+        id="my-checkbox"
+        true-value="yes"
+        false-value="no"
+      />
+      <!-- checkbox 还可以进一步指定当选项为 true 和 false 时所对应的值...这些值作为 true-value 和 false-value 的值给出 -->
+      <label for="my-checkbox">测试用复选框</label>
+
+      <p>Multiple Checkboxes' selected value(array):{{arrName}}</p>
+      <input type="checkbox" v-model="arrName" id="lavria" value="Lavria" />
+      <label for="lavria">Lavria</label>
+      <input type="checkbox" v-model="arrName" id="nepgear" value="Nepgear" />
+      <label for="nepgear">Nepgear</label>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      const App = createApp({
+        data() {
+          return {
+            flag: 'yes',
+            arrName: [],
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ count }}</p>
+      <button v-on:click="increment">+1</button>
+      <!-- vue 通过 v-on 指令来指定当某项事件发生时所要执行的处理 JavaScript 代码,处理值可以向上述所示指定为某处理函数(在 methods 中定义),也可以直接将代码以内联形式写出 ↓ -->
+
+      <!-- <button v-on:click="count++">+1</button> -->
+      <!-- 注意内联中的动态数据无需 this... -->
+
+      <!-- vue 中存在两种方式获取原生的 DOM 事件对象 -->
+      <!-- 1.通过 $event 这个特殊变量获取,直接将之传入方法中即可 -->
+      <!-- 2.使用箭头函数传递...第一个 -->
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      const App = createApp({
+        data() {
+          return {
+            count: 1,
+          };
+        },
+        methods: {
+          increment() {
+            this.count++;
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

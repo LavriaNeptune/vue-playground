@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>Message is</p>
+      <!-- 双大括号插入的是文本 {{}},所以也称呼为 Text Interpolation,PS:支持插入 js 所支持的各种表达式 -->
+      <!-- 如果要在当前元素内插入纯 HTML 代码,可以将代码值作为 v-html 指令的值插入 -->
+      <button @click="increment">+1</button>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      const App = createApp({}).mount('#app');
+    </script>
+  </body>
+</html>

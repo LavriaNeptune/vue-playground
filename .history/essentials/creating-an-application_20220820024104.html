@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">{{ message }}</div>
+    <script>
+      const { createApp } = Vue;
+      // 第一步 get 到 createApp 方法(对应 CDN 引用的 Vue)...如果是以模块形式安装的 vue 可以通过 import {createApp} from 'vue' 获取...PS:此处展示的是解构的语法...
+      createApp({
+        data() {
+          return {
+            message: 'Hello Vue!???',
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>which radio picked:{{picked}}</p>
+      <input type="radio" v-model="picked" id="lavria" value="Love" />
+      <label for="lavria">Lavria</label>
+      <input type="radio" v-model="picked" id="nepgear" value="Nepgear" />
+      <label for="nepgear">Nepgear</label>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      const App = createApp({
+        data() {
+          return {
+            picked: '',
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>Single Checkbox's boolean value is:{{flag}}</p>
+      <input type="checkbox" v-model="flag" id="my-checkbox" />
+      <label for="my-checkbox">测试用复选框</label>
+
+      <p>Multiple Checkbox's boolean value is:{{flag}}</p>
+      <input type="checkbox" v-model="flag" id="my-checkbox" />
+      <label for="my-checkbox">测试用复选框</label>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      const App = createApp({
+        data() {
+          return {
+            flag: false,
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

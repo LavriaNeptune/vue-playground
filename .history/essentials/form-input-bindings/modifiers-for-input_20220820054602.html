@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>惰性输入:{{messageOne}}</p>
+      <input type="text" v-model.lazy="messageOne" placeholder="type here" />
+
+      <p>限制输入(仅数字):{{messageTwo}}</p>
+      <input type="text" v-model.number="messageTwo" placeholder="type here" />
+
+      <p>惰性输入:{{messageThree}}</p>
+      <input type="text" v-model="messageThree" placeholder="type here" />
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      const App = createApp({
+        data() {
+          return {
+            message: '',
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

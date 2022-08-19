@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ count }}</p>
+      <button v-on:click="increment">+1</button>
+      <!-- vue 通过 v-on 指令来指定当某项事件发生时所要执行的处理函数 -->
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      const App = createApp({
+        data() {
+          return {
+            count: 1,
+          };
+        },
+        methods: {
+          increment() {
+            this.count++;
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

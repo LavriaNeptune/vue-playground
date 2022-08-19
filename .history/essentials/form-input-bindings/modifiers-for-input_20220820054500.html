@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>惰性输入:{{message}}</p>
+      <input type="text" v-model="message" placeholder="type here" />
+      <p>惰性输入:{{message}}</p>
+      <input type="text" v-model="message" placeholder="type here" />
+      <p>惰性输入:{{message}}</p>
+      <input type="text" v-model="message" placeholder="type here" />
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      const App = createApp({
+        data() {
+          return {
+            message: '',
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

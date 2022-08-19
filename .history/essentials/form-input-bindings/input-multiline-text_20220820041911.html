@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>Message is:{{message}}</p>
+      <testarea type="text" v-model="message" placeholder="type message here" />
+      <!-- v-model 实际上是一种语法糖:
+        v-bind 上了 form 表单的 change 事件
+        v-on 上了 form 表单的 value 值 -> 即传入 v-model 的值 -->
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      const App = createApp({
+        data() {
+          return {
+            message: '',
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
