@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      /* type 需要设置为 module...不然 import 语句不会生效 */
+      import MyComponent from './MyComponent.js';
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return {};
+        },
+        methods: {
+          'toggle-hint'() {},
+        },
+        components: { MyComponent },
+        /* 使用组件之前必须先在 components 选项上注册...注册之后就可以像使用一个 html 标签那样在模板代码中使用组件了...PS:这种方式也叫局部注册 -> 组件仅在其注册的组件中可见...如果想要组件在任何组件上均可见,可使用全局注册 */
+        template: ` <MyComponent title='Case One' @toggle-hint='toggleHint' />
+                    <MyComponent title='Case Two' @toggle-hint='toggleHint' /> `,
+        /* 每一个组件都具备其独立的数据状态 */
+      }).mount('#app');
+    </script>
+  </body>
+</html>

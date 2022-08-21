@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>ask a yes/no question: <input type="text" v-model="question" /></p>
+      <p>{{answer}}</p>
+      <img :src="pic" />
+    </div>
+    <script>
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return {
+            question: '',
+            answer: 'Questions usually contain a question mark. ;-)',
+            pic: '',
+          };
+        },
+        watch: {
+          question(newValue, oldValue) {
+            if (newValue.includes('?')) {
+              this.getAnswer();
+            }
+          },
+        },
+        /* watch 选项,一个类计算属性选项 */
+        methods: {
+          async getAnswer() {
+            this.answer = 'Thinking...wait for a minute';
+            try {
+              const res = await fetch('https://yesno.wtf/api');
+              const getResult = await res.json();
+              /* .json() 返回一个 JSON 格式的 promise 对象... */
+              this.answer = getResult.answer;
+              this.pic = getResult.image;
+            } catch (error) {
+              this.answer = 'Error!' + error;
+            }
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

@@ -7,7 +7,7 @@
     <script src="https://unpkg.com/vue@3"></script>
   </head>
   <body>
-    <div id="app">{{ message }}</div>
+    <div id="app"></div>
     <script>
       const { createApp } = Vue;
       createApp({
@@ -16,6 +16,8 @@
             message: 'Hello Vue!???',
           };
         },
+        template: `<input ref="input">`,
+        /*  */
       }).mount('#app');
     </script>
   </body>

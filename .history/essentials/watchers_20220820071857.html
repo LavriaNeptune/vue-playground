@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>ask a yes/no question: <input type="text" v-model="question" /></p>
+      <p>{{answer}}</p>
+      <img :src="pic" />
+    </div>
+    <script>
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return {
+            question: '',
+            answer: 'Questions usually contain a question mark. ;-)',
+            pic: '',
+          };
+        },
+        watch: {
+          question(newValue, oldValue) {
+            if (newValue.includes('?')) {
+              this.getAnswer();
+            }
+          },
+        },
+        /* watch 选项,类似计算属性...不过和计算属性不一样的是,watch 是监视数据变化而引发一系列行为;计算属性是自身依赖的数据变化而自动更新计算属性值。所以 watch 常用于来设置数据变化所导致的“副作用”,比如说一些异步操作...这些是计算属性所不能胜任的 */
+        /* 注意:默认情况下计算属性仅监视浅层数据...如果要 */
+        methods: {
+          async getAnswer() {
+            this.answer = 'Thinking...wait for a minute';
+            try {
+              const res = await fetch('https://yesno.wtf/api');
+              const getResult = await res.json();
+              /* .json() 返回一个 JSON 格式的 promise 对象... */
+              this.answer = getResult.answer;
+              this.pic = getResult.image;
+            } catch (error) {
+              this.answer = 'Error!' + error;
+            }
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

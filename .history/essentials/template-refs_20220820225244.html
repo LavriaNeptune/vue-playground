@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return {
+            message: 'Hello Vue!???',
+          };
+        },
+        template: `<input ref="input" placeholder="edit here" />`,
+        /* 在模板元素上通过特殊特性 ref 标记,该元素挂载到实际 DOM 元素上时,其所对应的 DOM 会暴露在 $refs 对象上...以供操作 */
+        mounted() {
+          console.log(this.$refs.input);
+          this.$refs.input.focus();
+          /* $refs  */
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

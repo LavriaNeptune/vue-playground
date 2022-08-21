@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>ask a yes/no question: <input type="text" v-model="question" /></p>
+      <p>{{answer}}</p>
+      <img :src="pic" />
+    </div>
+    <script>
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return {
+            question: '',
+            answer: 'Questions usually contain a question mark. ;-)',
+            pic: '',
+          };
+        },
+        watch: {
+          question(newValue, oldValue) {
+            if (newValue.includes('?')) {
+              this.getAnswer();
+            }
+          },
+        },
+        /* watch 完整格式如下: */
+
+        watch: {
+          question: {
+            handler(newValue, oldValue) {
+              if (newValue.includes('?')) {
+                this.getAnswer();
+              }
+            },
+            deep: true,
+            immediate: true,
+          },
+        },
+
+        /* watch 选项,类似计算属性...不过和计算属性不一样的是,watch 是监视数据变化而引发一系列行为;计算属性是自身依赖的数据变化而自动更新计算属性值。所以 watch 常用于来设置数据变化所导致的“副作用”,比如说一些异步操作...这些是计算属性所不能胜任的 */
+        /* 注意:默认情况下计算属性仅监视浅层数据...如果要让嵌套的属性变化也能触发 watch -> 可以在 watch (对象格式)中添加设置 deep:true 将监视器设置为深层监视器 */
+
+        /* watch 是惰性的 -> 如果观察源未发生改变..那么回调函数不会执行...但是有时候我们可能需要一个初始的状态用来做展示 -> 可以在 watch (对象格式)中添加设置 immediate: true 在声明时执行一次回调函数 */
+
+        /* 当状态变更时...如果同时触发 vue 组件更新和观察者回调,默认情况下 vue 组件更新会在观察者回调之后进行...所有如果在观察者回调中访问 DOM 时,DOM 处于 Vue 更新前...假设想要在观察者回调中访问 Vue 更新之后的 DOM,可以指定 flush:'post' 选项 */
+        methods: {
+          async getAnswer() {
+            this.answer = 'Thinking...wait for a minute';
+            try {
+              const res = await fetch('https://yesno.wtf/api');
+              const getResult = await res.json();
+              /* .json() 返回一个 JSON 格式的 promise 对象... */
+              this.answer = getResult.answer;
+              this.pic = getResult.image;
+            } catch (error) {
+              this.answer = 'Error!' + error;
+            }
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

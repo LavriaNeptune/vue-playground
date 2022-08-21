@@ -2,18 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <title>Vue</title>
     <script src="https://unpkg.com/vue@3"></script>
   </head>
   <body>
-    <div id="app">{{ message }}</div>
+    <p>ask a yes/no question: <input type="text" v-model="question" /></p>
+
+    <p>Get answer: {{answer}}</p>
     <script>
       const { createApp } = Vue;
       createApp({
         data() {
           return {
-            message: 'Hello Vue!???',
+            answer: 'Questions usually contain a question mark. ;-)',
           };
         },
       }).mount('#app');

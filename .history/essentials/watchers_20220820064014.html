@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>ask a yes/no question: <input type="text" v-model="question" /></p>
+      <p>{{answer}}</p>
+    </div>
+    <script>
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return {
+            answer: 'Questions usually contain a question mark. ;-)',
+          };
+        },
+        watch: {
+          question(newValue, oldValue) {
+            if (newValue.includes('?')) {
+              this.getAnswer();
+            }
+          },
+        },
+        methods
+      }).mount('#app');
+    </script>
+  </body>
+</html>
