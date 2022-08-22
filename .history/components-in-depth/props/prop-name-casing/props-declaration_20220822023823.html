@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+      div {
+        border: 2px dotted red;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"><mycomponent greeting-message="Hello"></mycomponent></div>
+    <script type="module">
+      import MyComponent from './MyComponent.js';
+
+      const { createApp } = Vue;
+      const app = createApp({
+        // template: `<MyComponent greeting-message="Hello"></MyComponent>`,
+        // template: `<MyComponent greetingMessage="Hello"></MyComponent>`,
+      });
+      app.component('mycomponent', MyComponent);
+
+      app.mount('#app');
+    </script>
+  </body>
+</html>

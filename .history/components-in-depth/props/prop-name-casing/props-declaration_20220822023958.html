@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+      div {
+        border: 2px dotted red;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import MyComponent from './MyComponent.js';
+
+      const { createApp } = Vue;
+      const app = createApp({
+        template: `<MyComponent greeting-message="Hello"></MyComponent>`,
+        // template: `<MyComponent greetingMessage="Hello"></MyComponent>`,
+        /* 作为模板编写时以上两种写法效果一致,更加推荐第一种写法 */
+        /* PS:如果直接使用 In-Dom 写法,则必须使用第一种写法...b */
+      });
+      app.component('MyComponent', MyComponent);
+      app.mount('#app');
+    </script>
+  </body>
+</html>

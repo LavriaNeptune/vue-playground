@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+      div {
+        border: 2px dotted red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import MyComponentA from './MyComponentA.js';
+      const { createApp } = Vue;
+      const app = createApp({
+        template: `<MyComponentA />`,
+      });
+      app.component('MyComponentA', MyComponentA);
+      app.mount('#app');
+    </script>
+  </body>
+</html>

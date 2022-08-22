@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import MyComponent from './MyComponent.js';
+      const { createApp } = Vue;
+      const app = createApp({
+
+        template: ` <MyComponent :title='hintOne' :post-font-size='postFontSize' @enlarge-text='enlargeText' />
+                    <MyComponent :title='hintTwo' :post-font-size='postFontSize' @enlarge-text='enlargeText' /> `,
+        /* 每一个组件都具备其独立的数据状态 */
+      }).mount('#app');
+    </script>
+  </body>
+</html>
