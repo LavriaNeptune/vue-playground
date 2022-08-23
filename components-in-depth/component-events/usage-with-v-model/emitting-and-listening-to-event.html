@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+      div {
+        border: 2px dotted red;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import MyComponent from './MyComponent.js';
+
+      const { createApp } = Vue;
+      const app = createApp({
+        data() {
+          return {
+            valueFromUpside: 'Hello World',
+          };
+        },
+        template: `<div>父组件上的值:{{valueFromUpside}}</div>
+                  <MyComponent v-model="valueFromUpside"></MyComponent>`,
+        /* vue 会将组件上的 v-model 进行展开,具体见下方代码:
+          <CustomInput
+            :modelValue="searchText"
+            @update:modelValue="newValue => searchText = newValue"/>
+            对于组件内部要做的事就是将组件内部原生 input 元素的 value 与上方代码中的 modelValue 进行绑定...输入新值时在 input 元素上触发 update:modelValue 事件,并把修改后的值作为事件传递的参数传过去即可 */
+        /* 在组件上使用 v-model 时默认都是使用 modelValue 作为 prop 名称...update:modelValue 作为对应的事件...如果不想使用默认命名,可以将自定义名称作为参数指定给 v-model -> v-model:myModelValue ... */
+      });
+      app.component('MyComponent', MyComponent);
+
+      app.mount('#app');
+    </script>
+  </body>
+</html>

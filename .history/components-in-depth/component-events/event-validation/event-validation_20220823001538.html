@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+      div {
+        border: 2px dotted red;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import MyComponent from './MyComponent.js';
+
+      const { createApp } = Vue;
+      const app = createApp({
+        data() {
+          return {
+            msg: 'Hello World',
+          };
+        },
+        methods: {
+          someEvent(passValue) {
+            console.log('Sub-components trigger events');
+            console.log(passValue);
+          },
+        },
+        template: `/*html*/<MyComponent @some-event="someEvent"></MyComponent>`,
+      });
+      app.component('MyComponent', MyComponent);
+
+      app.mount('#app');
+    </script>
+  </body>
+</html>

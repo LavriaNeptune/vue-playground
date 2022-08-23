@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+      div {
+        border: 2px dotted red;
+        padding: 10px;
+      }
+      .blue-text {
+        color: blue;
+      }
+      .yellow-text {
+        color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import MyComponent from './MyComponent.js';
+
+      const { createApp } = Vue;
+      const app = createApp({
+        data() {
+          return {
+            msg: 'Slot Content',
+          };
+        },
+        template: `<MyComponent>
+                    <template v-slot:header><p>Header Content</p></template>
+                    <template v-slot:main><p>Main Content</p></template>
+                    <template v-slot:footer><p>Footer Content</p></template>
+                  </MyComponent>`,
+        /* 通过为插槽命名,可以设置多个插槽出口...具体处理方式是:使用包含 v-slot 指令的 <template> 元素,并将目标插槽的名字作为 v-slot 指令的值传入... */
+      });
+      app.component('MyComponent', MyComponent);
+      app.mount('#app');
+    </script>
+  </body>
+</html>

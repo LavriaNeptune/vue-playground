@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+      div {
+        border: 2px dotted red;
+        padding: 10px;
+      }
+      .blue-text {
+        color: blue;
+      }
+      .yellow-text {
+        color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import MyComponent from './MyComponent.js';
+
+      const { createApp } = Vue;
+      const app = createApp({
+        data() {
+          return {
+            msg: 'Slot Content',
+          };
+        },
+        template: `<MyComponent>
+                    <template v-slot:header><></template>
+                    <template v-slot:main></template>
+                    <template v-slot:footer></template>
+                  </MyComponent>`,
+        /* slot 内容会按照其所在在父元素中的样子,原原本本地插入到组件中所标注的插槽出口处,插槽内容可以是任意合法的模板内容! */
+        /* 插槽内容可以访问父组件作用域...因为插槽内容就是在父组件模板中定义的 -> 相对的,插槽内容无法访问子组件的数据 */
+      });
+      app.component('MyComponent', MyComponent);
+      app.mount('#app');
+    </script>
+  </body>
+</html>

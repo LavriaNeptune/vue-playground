@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+      div {
+        border: 2px dotted red;
+        padding: 10px;
+      }
+      .blue-text {
+        color: blue;
+      }
+      .yellow-text {
+        color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import MyComponent from './MyComponent.js';
+
+      const { createApp } = Vue;
+      const app = createApp({
+        data() {
+          return {
+            msg: 'Slot Content',
+          };
+        },
+        template: `<MyComponent>
+                    <template v-slot:header><p>Header Content</p></template>
+                    <template v-slot:main="mainProps"><p>Main Content</p><p>{{mainProps}}</p></template>
+                    <template v-slot:footer><p>Footer Content</p></template>
+                  </MyComponent>`,
+/* 作用域插槽:获取子组件域内数据的方式...具体方式为:在子组件上 */
+      });
+      app.component('MyComponent', MyComponent);
+      app.mount('#app');
+    </script>
+  </body>
+</html>
