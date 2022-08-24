@@ -1,0 +1,1 @@
+const { onMounted, onUnmounted } = Vue;

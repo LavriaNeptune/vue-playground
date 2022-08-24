@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+      div {
+        border: 2px dotted red;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import MyComponentA from './MyComponentA.js';
+
+      const { createApp } = Vue;
+      const app = createApp({
+        template: `<MyComponentA></MyComponentA>`,
+
+        provide: {
+          message: 'Hello from Root Component!',
+        },
+        /* 组件之间传值如果是从较远的祖先组件到后代组件的话...使用 props 逐级传递会变得相当麻烦...而且在此之间的组件也可能并不会使用到这些 props -> 为了跨阶传递数据:provide 和 inject 可以解决这一问题。在父组件中设置 provide -> 父组件相当于成为了所有后代组件的依赖提供者,在需要使用到依赖的后代组件中通过 inject 选项使用父组件提供的依赖。 */
+        /* 以上示例是组件级别的依赖提供...还可以通过应用对象上提供的 provide 方法在整个应用层面提供依赖 */
+      });
+      app.component('MyComponentA', MyComponentA);
+
+      app.mount('#app');
+    </script>
+  </body>
+</html>
