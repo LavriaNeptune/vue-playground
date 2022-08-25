@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <!-- 本项目使用 CDN 引用方式使用 Vue(不依赖构建工具使用) -> 此种方法会导致 Vue 的所有 API 都暴露在全局变量 Vue 这个对象上 -->
+
+    <!-- 如果要使用 es 模块的导入语法...可以使用导入映射表这个浏览器的原生功能 -->
+    <!--  <script type="importmap">
+          {
+            "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+            }
+          }
+          </script> -->
+  </head>
+  <body>
+    <div id="app">{{ message }}</div>
+    <script>
+      const { createApp } = Vue;
+      // 第一步 get 到 createApp API(对应 CDN 引用的 Vue)...如果是以模块形式安装的 vue 可以通过 import {createApp} from 'vue' 获取...PS:此处展示的是解构的写法...
+      // es 模块导入方式:
+      // import { createApp } from 'vue'
+      createApp({
+        data() {
+          return {
+            message: 'Hello Vue!???',
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

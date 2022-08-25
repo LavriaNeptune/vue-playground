@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <!-- 模板语法 -> 通过特殊语法结构将数据展示于 html 页面上... -->
+
+    <div id="app">
+      <p>计算后的结果为{{ fullName }}</p>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return {
+            firstName: 'Lavria',
+            lastName: 'Neptune111',
+          };
+        },
+        computed: {
+          fullName() {
+            return `${this.firstName} ${this.lastName}`;
+          },
+        },
+        // computed 和 methods 的写法非常相似,其值都是具备一系列方法的对象。其特性在于:computed 可以直接将方法名当作 data 中的响应属性进行使用,而且其本身也具备响应性;还有一点就是 computed 会将计算值进行缓存,在模板中多次使用时可以节省计算资源。PS:最佳实践是只用 computed 表示通过 data 中数据得到的一些纯计算数据...computed 本意是用来抽象复杂计算逻辑的
+        // Tips:由多个状态动态决定的一个新状态 -> 可以通过 computed 属性处理...
+      }).mount('#app');
+    </script>
+  </body>
+</html>

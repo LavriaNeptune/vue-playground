@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="(item, index) in items" :key="index">{{ item.message }}</li>
+        <!-- 与其说是列表渲染,不如说是多次重复渲染某一个元素...每次渲染时数据往往是不同的 -> 基本上都是以数组(对象也可)格式提供 -> 使用 item in items 的语法迭代取出数组中的数据... -->
+        <!-- v-for 块中可以完整访问父作用域中的属性和变量,另外 v-for 还支持可选的第二个参数 index 来表示当前项的索引 -->
+      </ul>
+    </div>
+    <script>
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return {
+            items: [{ message: 'foo' }, { message: 'bar' }],
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

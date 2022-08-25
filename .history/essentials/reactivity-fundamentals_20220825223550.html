@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <!-- 模板语法 -> 通过特殊语法结构将数据展示于 html 页面上... -->
+
+    <div id="app">
+      <p>{{ message }}</p>
+      <!-- 双大括号语法 {{}} 主要用来插入文本 -->
+      <p v-html="rawHtml"></p>
+      <!-- 将纯 html 代码通过 v-html 指令传入 -> html 代码作为当前元素的子元素插入 -->
+      <p v-bind:id="attrValue">id 来自于 Vue 的 data</p>
+      <!-- html 特性值也可以来自于 data 中...用 v-bind 指令绑定特性键即可 -->
+      <a v-bind:[attributename]="url"> 点我跳转百度 </a>
+      <!-- 特性键其实也可以是动态的,需要包裹在方括号中、且值本才可以解析。注意 attributename 必须全小写...Vue 官方教程中的驼峰命名无法识别 2022/7/24 PS:必须搭配动态化指令使用,v-on 效果类似 -->
+      <p v-bind="objOfAttrs">直接传入多属性对象</p>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return {
+            message: 'Hello Vue!',
+            rawHtml: '<span style="color: red">This should be red.</span>',
+            attrValue: 'sp',
+            attributename: 'href',
+            // 由于范例中使用的是 In-DOM 分隔
+            url: 'http://www.baidu.com',
+            objOfAttrs: {
+              id: 'sp',
+              class: 'sp',
+              /* 局限性在于只能传入静态数据... */
+            },
+          };
+        },
+        // 以上是使用 Options API 时,组件的状态由 data 这个选项来表示 -> data 选项值应该为一个返回对象的函数...这样每次创建一个组件实例时,所返回的都是相互独立的状态数据 -> 该对象的任何顶级属性都会在组件实例上被代理。
+      }).mount('#app');
+    </script>
+  </body>
+</html>

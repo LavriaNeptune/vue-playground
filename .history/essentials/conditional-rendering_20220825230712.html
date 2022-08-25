@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-if="flag">条件为 true 时渲染的元素 🎉</h1>
+      <h1 v-else>条件为 false 时渲染的元素 🥲</h1>
+      <!-- 仅当 v-if 的值为 true 时才可以渲染其所在元素 -> 还可以紧跟一个 v-else 元素,作为当条件为false 时的替代渲染。PS:当想控制多个元素的渲染时,可以将这些元素包装进 <template> 元素中,然后再 template 元素上使用 v-if -->
+    </div>
+    <script>
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return {
+            flag: true,
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
