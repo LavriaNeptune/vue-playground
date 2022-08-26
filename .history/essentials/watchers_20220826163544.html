@@ -33,12 +33,12 @@
         watch: {
           question: {
             handler(newValue, oldValue) {
-              /* newValue 和 oldValue 表示 question 这个值在发生改变后、发生改变前的具体值 */
+              /* newValue 和 oldValue 表示 question 这个值在发生改变 */
               if (newValue.includes('?')) {
                 this.getAnswer();
               }
             },
-            // deep: true,
+            deep: true,
             immediate: true,
           },
         },
@@ -48,7 +48,7 @@
 
         /* watch 是惰性的 -> 如果观察源未发生改变..那么回调函数不会执行...但是有时候我们可能需要一个 初始的状态 用来做展示 -> 解决方法是:在 watch 属性选项中添加设置 immediate: true 在声明时执行一次回调函数 */
 
-        /* 当状态变更时...如果同时触发 vue 组件更新和观察者回调,默认情况下 vue 组件更新会在观察者回调之后进行...所有如果在观察者回调中访问 DOM 时,获取的 DOM 将处于 Vue 更新前...假设想要在观察者回调中访问 Vue 更新之后的 DOM,可以指定 flush:'post' 选项 */
+        /* 当状态变更时...如果同时触发 vue 组件更新和观察者回调,默认情况下 vue 组件更新会在观察者回调之后进行...所有如果在观察者回调中访问 DOM 时,DOM 处于 Vue 更新前...假设想要在观察者回调中访问 Vue 更新之后的 DOM,可以指定 flush:'post' 选项 */
 
         methods: {
           async getAnswer() {
