@@ -16,8 +16,8 @@
         },
         // template: `<input ref="input" placeholder="edit here" />`,
         /* 可以通过特殊特性 ref 在模板元素标记,在该元素挂载到实际 DOM 元素上时,将会以该 ref 特性的值作为 key;模板元素所对应的实际 DOM 元素作为值。收集并暴露在 $refs 对象上...以供操作 */
-        template: `<input :ref="(el)=>{ el.value = 'ha!'}" placeholder="edit here" /><p>{{message}}</p><button @click="this.message='emm...'">点击修改所显示信息</button>`,
-        // 使用函数作为 ref 参数时 -> 每次当组件更新时,都会调用一次该函数,函数会接收到其所对应的 dom 元素作为第一个参数。PS:必须设置动态的 :ref 绑定才可以传入函数..
+        template: `<input :ref="(el)=>{this.message = '函数执行'}" placeholder="edit here" /><p>{{message}}</p>`,
+        // 使用函数作为 ref 参数时 -> 每次组件更新都会调用一次该函数,函数会接收到其所对应的 dom 元素作为第一个参数。PS:
 
         // mounted() {
         //   console.log(this.$refs.input);

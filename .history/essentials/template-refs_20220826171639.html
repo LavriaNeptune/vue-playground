@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return {
+            message: 'Hello Vue!???',
+          };
+        },
+        template: `<input ref="input" placeholder="edit here" />`,
+        /* 可以通过特殊特性 ref 在模板元素标记,在该元素挂载到实际 DOM 元素上时,将会以该 ref 特性的值作为 key;模板元素所对应的实际 DOM 元素作为值。收集并暴露在 $refs 对象上...以供操作 */
+        template: `<input :ref="input" placeholder="edit here" />`,
+        mounted() {
+          console.log(this.$refs.input);
+          this.$refs.input.focus();
+          /* 注意:$refs 只能在组件"挂载"之后才可以访问,在此之前若是访问,其值为 null  */
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
