@@ -7,13 +7,18 @@
     <script src="https://unpkg.com/vue@3"></script>
   </head>
   <body>
-    <div id="app">{{ message }}</div>
+    <div id="app">
+      <div v-bind="objectOfAttrs">Test</div>
+    </div>
     <script>
       const { createApp } = Vue;
       createApp({
         data() {
           return {
-            message: 'Hello Vue!???',
+            objectOfAttrs: {
+              id: 'container',
+              class: 'myClass',
+            },
           };
         },
       }).mount('#app');
